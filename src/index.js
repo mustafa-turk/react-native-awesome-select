@@ -1,35 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default (props) => {
-  const [data, setData] = useState(props.data);
-
-  function handlePress(i) {
-    const _data = [...data];
-    _data[i].isActive = !_data[i].isActive;
-    handleDataChange(_data);
+  function handlePress(index) {
+    const data = [...props.data];
+    data[index].isActive = !data[index].isActive;
+    props.onValueChange(data);
   };
 
-  function handleDataChange(data) {
-    setData(data);
-    props.onValueChange(data);
-  }
-
-  function handleStyles(isActive) {
+  function handleStylesForActiveState(isActive) {
     return isActive ? [styles.activeSelect, props.activeStyle] : [styles.inactiveSelect, props.inactiveStyle];
   }
 
   return (
     <View style={styles.container}>
-      {data.map((item, i) => {
+      {props.data.map((item, index) => {
         return (
           <TouchableOpacity
-            key={i}
-            onPress={() => handlePress(i)}
+            key={index}
+            onPress={() => handlePress(index)}
             activeOpacity={0.9}
-            style={[ handleStyles(item.isActive), styles.select ]}
+            style={[ handleStylesForActiveState(item.isActive), styles.select ]}
           >
-            <Text style={handleStyles(item.isActive)}>{item.name}</Text>
+            <Text style={handleStylesForActiveState(item.isActive)}>{item.name}</Text>
           </TouchableOpacity>
         );
       })}
