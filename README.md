@@ -2,7 +2,7 @@
 
 A multiselect component with zero dependencies.
 
-![demo](https://raw.githubusercontent.com/mustafa-turk/resources/master/demo.gif)
+![demo](https://media.giphy.com/media/5efXuUpVbc2h34CIwg/giphy.gif)
 
 ## Install
 
